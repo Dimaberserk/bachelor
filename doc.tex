@@ -16,7 +16,7 @@
 \graphicspath{ {images/} } 
 
 \usepackage{amssymb,amsfonts,amsmath,amsthm}
-\usepackage[usenames,dvipsnames]{color}
+%\usepackage[usenames,dvipsnames]{color}
 \usepackage{makecell}
 \usepackage{multirow}
 \usepackage{array,makecell,booktabs}
@@ -128,22 +128,30 @@
 		\empline
 	}
 	
-	\usepackage[
-		backend=biber,
-		bibencoding=utf8,
-		sorting=none,
-		style=gost-numeric,
-		autolang=none,
-		eprint=false
-	]{biblatex}
-	\addbibresource{references/literature.bib}
+%	\usepackage[
+%		backend=biber,
+%		bibencoding=utf8,
+%		sorting=none,
+%		style=gost-numeric,
+%		autolang=none,
+%		eprint=false
+%	]{biblatex}
 
-\defbibheading{bibheading}[Библиографический список]{
-	\likechapterheading{#1}
-	\addtocontents{toc}{\vspace{1em}}
-	\addcontentsline{toc}{likechapter}{\MakeUppercase{#1}}
-}
-\DeclareFieldFormat{author}{{#1}}
+\bibliographystyle{utf8gost705u}
+\makeatletter % [1] -> 1.
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
+%\addto\captionsrussian{\def\refname{Библиографический список}}
+\addto\captionsrussian{\renewcommand{\bibname}{Библиографический список}}
+
+\newcommand{\url}[1]{#1}
+
+% \defbibheading{bibheading}[Библиографический список]{
+% 	\likechapterheading{#1}
+% 	\addtocontents{toc}{\vspace{1em}}
+% 	\addcontentsline{toc}{likechapter}{\MakeUppercase{#1}}
+% }
+%\DeclareFieldFormat{author}{{#1}}
 
 \usepackage{lastpage}
 
@@ -1310,6 +1318,10 @@ $y_t$ линейного фильтра с передаточной функци
 		алгоритм систем.
 \end{enumerate}
 
-\printbibliography[heading=bibheading]
+%\printbibliography[heading=bibheading]
+\clearpage
+\addtocontents{toc}{\vspace{1em}}
+\addcontentsline{toc}{likechapter}{\MakeUppercase{Библиографический список}}
+\bibliography{references/literature}
  
 \end{document}
